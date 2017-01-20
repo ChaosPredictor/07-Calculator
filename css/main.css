@@ -25,3 +25,7 @@ button {
 				min-width: 40px;
 				min-height: 40px;
 }
+
+.duble-col-button{
+				min-width: 80px;
+}
