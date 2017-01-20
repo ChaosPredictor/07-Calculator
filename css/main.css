@@ -14,7 +14,14 @@ body{
 
 
 td {
-				padding: 5px;
+				//padding: 5px;
 				min-width: 40px;
 				min-heigth: 40px;
+				border: 0px solid black;
+}
+
+button {
+				background-color:rgba(0,0,0,0);
+				min-width: 40px;
+				min-height: 40px;
 }
