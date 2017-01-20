@@ -26,6 +26,11 @@ button {
 				min-height: 40px;
 }
 
+.duble-row-button{
+				min-height: 80px;
+}
+
 .duble-col-button{
 				min-width: 80px;
 }
+
