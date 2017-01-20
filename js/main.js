@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
 	$( ".num-button" ).click(function() {
-		alert( "Handler for .click() called." );
+		printToDisplay($(this).attr('id'));
 	});
 
 	document.getElementById("refresh").addEventListener("click", function(){
@@ -10,3 +10,6 @@ $(document).ready(function(){
 
 });
 
+function printToDisplay(str) {
+	$("#display").text(str);
+}
