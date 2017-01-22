@@ -1,6 +1,7 @@
 var currentNumber = 0;
 var arrayNumber = [];
 var arrayAct = [];
+var displayStr = "";
 
 $(document).ready(function(){
 
@@ -37,14 +38,24 @@ function action(operator) {
     };
 }
 
+function addToSubdisplay(chr) {
+	displayStr += chr;
+	$("#subDisplay").text(displayStr);
+}
 
 function numberClicked(chr) {
-	console.log(chr);
-	currentNumber = currentNumber * 10 + Number(chr);
-	return currentNumber;
+	if (currentNumber == 0 && chr == "0") {
+		return 0;
+	} else {
+		console.log(chr);
+		currentNumber = currentNumber * 10 + Number(chr);
+		addToSubdisplay(chr);
+		return currentNumber;
+	}
 }
 
 function actClicked(chr) {
+	addToSubdisplay(chr);
 	arrayNumber.push(currentNumber);
 	console.log("pushed: " + currentNumber);
 	currentNumber = 0;
@@ -65,7 +76,6 @@ function actClicked(chr) {
 			return 0;
 		default:
 			arrayAct.push(chr);
-
 	}
 
 }
