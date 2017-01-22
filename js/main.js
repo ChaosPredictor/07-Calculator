@@ -2,6 +2,7 @@ var currentNumber = 0;
 var arrayNumber = [];
 var arrayAct = [];
 var displayStr = "";
+var onlyAct = false;
 
 $(document).ready(function(){
 
@@ -43,9 +44,19 @@ function addToSubdisplay(chr) {
 	$("#subDisplay").text(displayStr);
 }
 
+function clearSubdisplay() {
+	displayStr = "";
+}
+
 function numberClicked(chr) {
 	if (currentNumber == 0 && chr == "0") {
 		return 0;
+	} else if (onlyAct) {
+		onlyAct = false;
+		currentNumber = Number(chr);
+		clearSubdisplay();
+		addToSubdisplay(chr);
+		return currentNumber;
 	} else {
 		console.log(chr);
 		currentNumber = currentNumber * 10 + Number(chr);
@@ -55,16 +66,20 @@ function numberClicked(chr) {
 }
 
 function actClicked(chr) {
+	onlyAct = false;
 	addToSubdisplay(chr);
 	arrayNumber.push(currentNumber);
 	console.log("pushed: " + currentNumber);
 	currentNumber = 0;
 	switch (chr) {
 		case '=':
+			if (arrayAct.last() == '=')
+				break;
 			var Act = new action(arrayAct[0]);
 			currentNumber = Act.act(arrayNumber[0],arrayNumber[1]);
 			arrayNumber = [];
 			arrayAct = [];
+			onlyAct = true;
 			return currentNumber;
 		case 'a':
 			currentNumber = 0;
