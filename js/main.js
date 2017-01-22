@@ -29,6 +29,10 @@ function action(operator) {
 				return a + b;
 			case "-":
 				return a - b;
+			case "*":
+				return a * b;
+			case "/":
+				return a / b;
 		};
     };
 }
