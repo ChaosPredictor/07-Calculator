@@ -51,7 +51,18 @@ function actClicked(chr) {
 	switch (chr) {
 		case '=':
 			var Act = new action(arrayAct[0]);
-			return Act.act(arrayNumber[0],arrayNumber[1]);
+			currentNumber = Act.act(arrayNumber[0],arrayNumber[1]);
+			arrayNumber = [];
+			arrayAct = [];
+			return currentNumber;
+		case 'a':
+			currentNumber = 0;
+			arrayNumber = [];
+			arrayAct = [];
+			return 0;
+		case 'c':
+			currentNumber = 0;
+			return 0;
 		default:
 			arrayAct.push(chr);
 
