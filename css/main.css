@@ -6,9 +6,9 @@ body{
 .main-div{
 	margin-top:150px;
 	background-color: rgba(34,67,56,0.5);
-	min-width: 400px;
-	padding-top: 80px;
-	padding-bottom: 80px;
+	//min-width: 400px;
+	padding-top: 30px;
+	padding-bottom: 30px;
   border-radius: 20px;
 }
 
@@ -34,3 +34,18 @@ button {
 				min-width: 80px;
 }
 
+#display-div {
+				width: 162px;
+				height: 50px;
+				border:2px solid black;
+}
+
+#display {
+				text-align: right;
+				font-size: 24px;
+}
+
+#subDisplay {
+				font-size: 12px;
+				min-heigth: 40px;
+}
