@@ -22,10 +22,10 @@ $(document).ready(function(){
 });
 
 function action(operator) {
-	console.log("action run");
+	//console.log("action run");
 	this.operator = operator;
     this.act = function (a, b) {
-        console.log("act run");
+        //console.log("act run");
 		switch (this.operator) {
 			case "+":
 				return a + b;
@@ -63,7 +63,7 @@ function numberClicked(chr) {
 		addToSubdisplay(chr);
 		return currentNumber;
 	} else {
-		console.log(chr);
+		//console.log(chr);
 		currentNumber = currentNumber * 10 + Number(chr);
 		addToSubdisplay(chr);
 		return currentNumber;
@@ -82,10 +82,18 @@ function actClicked(chr) {
 				return currentNumber;
 			};
 			addToSubdisplay(chr);
-			console.log("act: " +arrayAct[0]);
-			console.log("a: " + arrayNumber[0] + "  b: " + arrayNumber[1]);
-			var Act = new action(arrayAct[0]);
-			currentNumber = Act.act(arrayNumber[0],arrayNumber[1]);
+			//console.log("act: " +arrayAct[0]);
+			//console.log("a: " + arrayNumber[0] + "  b: " + arrayNumber[1]);i
+			currentNumber = arrayNumber[0];
+			for(var i = 0; i < arrayNumber.length-1; i++){
+				console.log(arrayNumber);
+				console.log(arrayAct);
+				var Act = new action(arrayAct[i]);
+				currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
+				arrayNumber.splice(i, 2, currentNumber);
+				arrayAct.splice(i,1);
+				i--;
+			}
 			arrayNumber = [];
 			arrayAct = [];
 			onlyAct = true;
