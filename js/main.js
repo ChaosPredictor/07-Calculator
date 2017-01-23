@@ -66,15 +66,17 @@ function numberClicked(chr) {
 }
 
 function actClicked(chr) {
-	onlyAct = false;
-	addToSubdisplay(chr);
+	//console.log(onlyAct);
 	arrayNumber.push(currentNumber);
-	console.log("pushed: " + currentNumber);
-	currentNumber = 0;
+	//console.log("pushed: " + currentNumber);
 	switch (chr) {
 		case '=':
-			if (arrayAct.last() == '=')
-				break;
+			if (onlyAct==true) {
+				return currentNumber;
+			};
+			addToSubdisplay(chr);
+			console.log("act: " +arrayAct[0]);
+			console.log("a: " + arrayNumber[0] + "  b: " + arrayNumber[1]);
 			var Act = new action(arrayAct[0]);
 			currentNumber = Act.act(arrayNumber[0],arrayNumber[1]);
 			arrayNumber = [];
@@ -82,14 +84,20 @@ function actClicked(chr) {
 			onlyAct = true;
 			return currentNumber;
 		case 'a':
+			clearSubdisplay();
+			onlyAct = false;
 			currentNumber = 0;
 			arrayNumber = [];
 			arrayAct = [];
 			return 0;
 		case 'c':
+			onlyAct = false;
 			currentNumber = 0;
 			return 0;
 		default:
+			addToSubdisplay(chr);
+			currentNumber = 0;
+			onlyAct = false;
 			arrayAct.push(chr);
 	}
 
