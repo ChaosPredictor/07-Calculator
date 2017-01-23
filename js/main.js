@@ -80,6 +80,7 @@ function numberClicked(chr) {
 		return 0;
 	} else if (onlyAct) {
 		onlyAct = false;
+		decimal = false;
 		currentNumber = Number(chr);
 		clearSubdisplay();
 		addToSubdisplay(chr);
@@ -138,6 +139,7 @@ function actClicked(chr) {
 			clearSubdisplay();
 			onlyAct = false;
 			currentNumber = 0;
+			decimal = false;
 			arrayNumber = [];
 			arrayAct = [];
 			return 0;
@@ -147,6 +149,7 @@ function actClicked(chr) {
 				arrayNumber.pop();
 			};
 			currentNumber = 0;
+			decimal = false;
 			return 0;
 		default:
 			addToSubdisplay(chr);
