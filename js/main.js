@@ -41,11 +41,16 @@ function action(operator) {
 
 function addToSubdisplay(chr) {
 	displayStr += chr;
-	$("#subDisplay").text(displayStr);
+	SubdisplayRefresh();
 }
 
 function clearSubdisplay() {
 	displayStr = "";
+	SubdisplayRefresh();
+}
+
+function SubdisplayRefresh() {
+	$("#subDisplay").text(displayStr);
 }
 
 function numberClicked(chr) {
