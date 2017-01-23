@@ -72,6 +72,8 @@ function actClicked(chr) {
 	switch (chr) {
 		case '=':
 			if (onlyAct==true) {
+				clearSubdisplay();
+				addToSubdisplay(currentNumber);
 				return currentNumber;
 			};
 			addToSubdisplay(chr);
