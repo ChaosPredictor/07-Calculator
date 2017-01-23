@@ -84,7 +84,17 @@ function actClicked(chr) {
 			addToSubdisplay(chr);
 			//console.log("act: " +arrayAct[0]);
 			//console.log("a: " + arrayNumber[0] + "  b: " + arrayNumber[1]);i
-			currentNumber = arrayNumber[0];
+			for(var i = 0; i < arrayNumber.length-1; i++){
+				console.log(arrayNumber);
+				console.log(arrayAct);
+				if (arrayAct[i] == '*' || arrayAct[i] == '/') {
+					var Act = new action(arrayAct[i]);
+					currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
+					arrayNumber.splice(i, 2, currentNumber);
+					arrayAct.splice(i,1);
+					i--;
+				}
+			}
 			for(var i = 0; i < arrayNumber.length-1; i++){
 				console.log(arrayNumber);
 				console.log(arrayAct);
