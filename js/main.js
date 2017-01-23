@@ -49,6 +49,27 @@ function clearSubdisplay() {
 	SubdisplayRefresh();
 }
 
+function deleteLastNumberSubdisplay(){
+	console.log(displayStr);
+	var arr = displayStr.split("");
+	var leng = arr.length;
+	var r = false;
+	for(var i = 0; i < leng; i++) {
+		var temp = arr.pop();
+		console.log(arr);
+		console.log(temp);
+		if (!( temp >= '0' && temp <= '9')) {
+			console.log("runrun run");
+			arr.push(temp);
+			displayStr = arr.join("");
+			console.log(displayStr);
+			SubdisplayRefresh();
+			return r; 
+		}
+		r = true;
+	}
+}
+
 function SubdisplayRefresh() {
 	$("#subDisplay").text(displayStr);
 }
@@ -77,6 +98,7 @@ function actClicked(chr) {
 	switch (chr) {
 		case '=':
 			if (onlyAct==true) {
+				arrayNumber.pop();
 				clearSubdisplay();
 				addToSubdisplay(currentNumber);
 				return currentNumber;
@@ -106,6 +128,7 @@ function actClicked(chr) {
 			}
 			arrayNumber = [];
 			arrayAct = [];
+			console.log(arrayNumber);
 			onlyAct = true;
 			return currentNumber;
 		case 'a':
@@ -117,6 +140,9 @@ function actClicked(chr) {
 			return 0;
 		case 'c':
 			onlyAct = false;
+			if (deleteLastNumberSubdisplay() == true) {
+				arrayNumber.pop();
+			};
 			currentNumber = 0;
 			return 0;
 		default:
