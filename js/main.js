@@ -3,6 +3,7 @@ var arrayNumber = [];
 var arrayAct = [];
 var displayStr = "";
 var onlyAct = false;
+var decimal = false;
 
 $(document).ready(function(){
 
@@ -83,13 +84,34 @@ function numberClicked(chr) {
 		clearSubdisplay();
 		addToSubdisplay(chr);
 		return currentNumber;
-	} else {
-		//console.log(chr);
-		currentNumber = currentNumber * 10 + Number(chr);
+	} else if (chr == "." && decimal == false) {
+		decimal = true;
 		addToSubdisplay(chr);
-		return currentNumber;
+		//console.log(getDecimalFractions(5.145));
+	} else {
+		if (decimal == false) {
+			//console.log(chr);
+			currentNumber = currentNumber * 10 + Number(chr);
+			addToSubdisplay(chr);
+			return currentNumber;
+		} else {
+			console.log("decimal number " + Math.pow(0.1, getDecimalFractions(currentNumber)+1));
+			currentNumber += Number(chr) * Math.pow(0.1, getDecimalFractions(currentNumber)+1);
+			addToSubdisplay(chr);
+			return currentNumber;
+		}
 	}
 }
+
+function getDecimalFractions(number) {
+	console.log(number);
+	for(var i = 0; i < 10; i++) {
+		if (number % 1 == 0) {
+			return i
+		}
+		number *= 10;
+	}
+};
 
 function actClicked(chr) {
 	//console.log(onlyAct);
@@ -106,26 +128,7 @@ function actClicked(chr) {
 			addToSubdisplay(chr);
 			//console.log("act: " +arrayAct[0]);
 			//console.log("a: " + arrayNumber[0] + "  b: " + arrayNumber[1]);i
-			for(var i = 0; i < arrayNumber.length-1; i++){
-				console.log(arrayNumber);
-				console.log(arrayAct);
-				if (arrayAct[i] == '*' || arrayAct[i] == '/') {
-					var Act = new action(arrayAct[i]);
-					currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
-					arrayNumber.splice(i, 2, currentNumber);
-					arrayAct.splice(i,1);
-					i--;
-				}
-			}
-			for(var i = 0; i < arrayNumber.length-1; i++){
-				console.log(arrayNumber);
-				console.log(arrayAct);
-				var Act = new action(arrayAct[i]);
-				currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
-				arrayNumber.splice(i, 2, currentNumber);
-				arrayAct.splice(i,1);
-				i--;
-			}
+			calculate();
 			arrayNumber = [];
 			arrayAct = [];
 			console.log(arrayNumber);
@@ -148,12 +151,35 @@ function actClicked(chr) {
 		default:
 			addToSubdisplay(chr);
 			currentNumber = 0;
+			decimal = false;
 			onlyAct = false;
 			arrayAct.push(chr);
 	}
 
 }
 
+function calculate(){
+			for(var i = 0; i < arrayNumber.length-1; i++){
+				console.log(arrayNumber);
+				console.log(arrayAct);
+				if (arrayAct[i] == '*' || arrayAct[i] == '/') {
+					var Act = new action(arrayAct[i]);
+					currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
+					arrayNumber.splice(i, 2, currentNumber);
+					arrayAct.splice(i,1);
+					i--;
+				}
+			}
+			for(var i = 0; i < arrayNumber.length-1; i++){
+				console.log(arrayNumber);
+				console.log(arrayAct);
+				var Act = new action(arrayAct[i]);
+				currentNumber = Act.act(arrayNumber[i],arrayNumber[i+1]);
+				arrayNumber.splice(i, 2, currentNumber);
+				arrayAct.splice(i,1);
+				i--;
+			}
+}
 
 function printToDisplay(str) {
 	$("#display").text(str);
