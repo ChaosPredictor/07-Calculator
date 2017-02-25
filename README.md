@@ -1,6 +1,6 @@
 ## Synopsis
 
-This is portfolio website that done as part of freeCodeCamp project. It's website is 5th website of Front End Development part, in Advanced Front End Development Projects. The name of the projetc is Build a JavaScript Calculator.
+This is portfolio website that done as part of freeCodeCamp project. It's website is 7th website of Front End Development part, in Advanced Front End Development Projects. The name of the projetc is Build a JavaScript Calculator.
 
 ## Code Example
 
